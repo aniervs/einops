@@ -1,0 +1,5 @@
+numpy
+ipykernel
+pillow
+torchvision
+matplotlib
