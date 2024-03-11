@@ -1,4 +1,7 @@
+# EINOPS playground
 
+This is a repository I made when reading the `Einops` paper. Below you see my notes on the paper (not sure how useful they are).
+You can see the simple code I made at [./code/main.ipynb](https://github.com/aniervs/einops/blob/main/code/main.ipynb).
 
 - Reference: Alex Rogozhnikov. "Einops: Clear and Reliable Tensor Manipulations with Einstein-like Notation." In *International Conference on Learning Representations*, 2022. [https://openreview.net/forum?id=oapKSVM2bcj](https://openreview.net/forum?id=oapKSVM2bcj).
 
