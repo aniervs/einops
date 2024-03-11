@@ -1,13 +1,23 @@
-Library: https://einops.rocks
-Paper: [[1830_einops_clear_and_reliable_tens.pdf]]
+
+
+- Reference: Alex Rogozhnikov. "Einops: Clear and Reliable Tensor Manipulations with Einstein-like Notation." In *International Conference on Learning Representations*, 2022. [https://openreview.net/forum?id=oapKSVM2bcj](https://openreview.net/forum?id=oapKSVM2bcj).
+
+## Description
+
+- **Einops** is a uniform way to manipulate n-dimensional arrays (tensors for brevity) that improves -readability and flexibility.
+- Very simple API compatible with many frameworks as "backends".
 
 
 ## Issues with classical Tensor operations
-- 
-![[Screenshot 2024-03-11 at 05.04.38.png]]
-- ![[Screenshot 2024-03-11 at 05.06.45.png]]
+- Getting the right order of the axes is not trivial (Look [here](first-issue.png))
+- Tensor operations break the structure of the tensors, because operations like `reshape` treat the tensors as sequences without caring about the relationship between axes (Look [here](second-issue.png))
+- Usual chains of tensor operations lack stronger checks.
+- Mistakes on the code related to the tensors' shapes remain under the radar for a long time before detecting them.
+- Require writing down all intermediate steps to debug the code.
+- Most times it's not possible to visualize intermediate steps meaningfully.
+- Python uses 0-based indexing, and naturally frameworks in Python too, but languages like Julia, R, and MATLAB are 1-indexing. This causes off-by-1 error sometimes.
 
-## Related work
+## Related work (similar previous attempts)
 
 ### Labeled tensors (assigning names to each dimension)
 - `xarray`
@@ -35,7 +45,9 @@ np.einsum('ijk->ij', C) # sum of C[i, j, k] for all k's gets into result[i, j]
 np.einsum('ij,ji->', A, B) # sum of A[i, j] * B[j, i] over all j's gets into result[i, i], therefore it is trace(A * B)
 ```
 
-**Main issue**: Does not support multi-character names for the axes
+**Main issue**s:
+- Does not support multi-character names for the axes.
+- Does not support complex packing operations.
 ## Einops
 
 Like einsum, but better:
@@ -90,6 +102,7 @@ repeat(im, 'h w c -> (h h2) (w w2) c', h2 = 2, w2 = 2, c = 3) # 2x upsampling of
 ```
 
 ## Discussion
+
 
 ## Einops and Einsum
 
