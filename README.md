@@ -121,6 +121,7 @@ repeat(im, 'h w c -> (h h2) (w w2) c', h2 = 2, w2 = 2, c = 3) # 2x upsampling of
 	- layer counterparts, to use in modules like `torch.nn.Sequential`
 - einops doesn't support:
 	- repeated axes on the left-hand side (used for computing the trace)
+- we can use both to support some of the operations `einops` doesn't support. An example, it's a very clean implementation of a Multi-Head Attention module (refer to the paper's appendix).
 
 ## Performance
 
