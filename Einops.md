@@ -91,7 +91,7 @@ Like einsum, but better:
 
 ```
 
-#### Concrete examples
+#### Concrete simple examples
 
 ```Python
 rearrange(im, '(b1 b2) h w c -> (b1 h) (b2 w) c', b1 = 4, b2 = 4) # organize 16 images into a 4x4 grid
@@ -101,19 +101,22 @@ reduce(im, 'b c (h h2) (w w2) -> b c h w', 'max', h2 = 2, w2 = 2) # max pooling 
 repeat(im, 'h w c -> (h h2) (w w2) c', h2 = 2, w2 = 2, c = 3) # 2x upsampling of an image by repeating pixels
 ```
 
-## Discussion
-
 
 ## Einops and Einsum
 
-## Formal Grammar 
-
-## Usecase example: Multi-head attention
+- einops and einsum work great togther 
+- einops supports arbitrary reductions (min,max,sum,mean,...) while einsum only support sum.
+- einops allows multi-character names for axes, unlike einsum which allows only one.
+- einops supports:
+	- composition and decomposition of axes, unitary 
+	- unitary axes
+	- specification of axes size and verification of shapes and divisibility
+	- anonymous axes
+	- accepts a list of tensors with the same shapes and dtypes, stacked.
+	- layer counterparts, to use in modules like `torch.nn.Sequential`
+- einops doesn't support:
+	- repeated axes on the left-hand side (used for computing the trace)
 
 ## Performance
 
-## Caching
-
-## Flexibility and applicability
-
-## Adoption
+The overhead is negligible (refer to the paper's table for a comparison)
