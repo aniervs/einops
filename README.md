@@ -48,9 +48,11 @@ np.einsum('ijk->ij', C) # sum of C[i, j, k] for all k's gets into result[i, j]
 np.einsum('ij,ji->', A, B) # sum of A[i, j] * B[j, i] over all j's gets into result[i, i], therefore it is trace(A * B)
 ```
 
-**Main issue**s:
+**Main issues**:
 - Does not support multi-character names for the axes.
-- Does not support complex packing operations.
+- Does not support reductions besides sum.
+- Does not support complex operations on single tensors, like complex reshaping.
+
 ## Einops
 
 Like einsum, but better:
